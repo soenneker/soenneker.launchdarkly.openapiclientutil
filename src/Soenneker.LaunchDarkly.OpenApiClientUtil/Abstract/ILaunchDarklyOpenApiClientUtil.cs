@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Soenneker.LaunchDarkly.OpenApiClientUtil.Abstract;
 
 /// <summary>
-/// Exposes a cached OpenAPI client instance.
+/// Provides a lazily created LaunchDarkly generated client over the shared authenticated transport.
 /// </summary>
 public interface ILaunchDarklyOpenApiClientUtil: IDisposable, IAsyncDisposable
 {

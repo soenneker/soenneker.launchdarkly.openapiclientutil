@@ -1,37 +1,27 @@
-using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
-using Soenneker.Extensions.Configuration;
 using Soenneker.Extensions.ValueTask;
 using Soenneker.LaunchDarkly.HttpClients.Abstract;
 using Soenneker.LaunchDarkly.OpenApiClientUtil.Abstract;
 using Soenneker.LaunchDarkly.OpenApiClient;
-using Soenneker.Kiota.GenericAuthenticationProvider;
 using Soenneker.Utils.AsyncSingleton;
 
 namespace Soenneker.LaunchDarkly.OpenApiClientUtil;
 
-///<inheritdoc cref="ILaunchDarklyOpenApiClientUtil"/>
 public sealed class LaunchDarklyOpenApiClientUtil : ILaunchDarklyOpenApiClientUtil
 {
     private readonly AsyncSingleton<LaunchDarklyOpenApiClient> _client;
 
-    public LaunchDarklyOpenApiClientUtil(ILaunchDarklyOpenApiHttpClient httpClientUtil, IConfiguration configuration)
+    public LaunchDarklyOpenApiClientUtil(ILaunchDarklyOpenApiHttpClient httpClientUtil)
     {
         _client = new AsyncSingleton<LaunchDarklyOpenApiClient>(async token =>
         {
             HttpClient httpClient = await httpClientUtil.Get(token).NoSync();
 
-            var apiKey = configuration.GetValueStrict<string>("LaunchDarkly:ApiKey");
-            string authHeaderName = configuration["LaunchDarkly:AuthHeaderName"] ?? "Authorization";
-            string authHeaderValueTemplate = configuration["LaunchDarkly:AuthHeaderValueTemplate"] ?? "{token}";
-            string authHeaderValue = authHeaderValueTemplate.Replace("{token}", apiKey, StringComparison.Ordinal);
-
-            var requestAdapter = new HttpClientRequestAdapter(new GenericAuthenticationProvider(headerName: authHeaderName, headerValue: authHeaderValue),
-                httpClient: httpClient);
+            var requestAdapter = new HttpClientRequestAdapter(new AnonymousAuthenticationProvider(), httpClient: httpClient);
 
             return new LaunchDarklyOpenApiClient(requestAdapter);
         });

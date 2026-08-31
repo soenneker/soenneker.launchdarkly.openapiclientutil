@@ -6,7 +6,7 @@ using Soenneker.LaunchDarkly.OpenApiClientUtil.Abstract;
 namespace Soenneker.LaunchDarkly.OpenApiClientUtil.Registrars;
 
 /// <summary>
-/// Registers the OpenAPI client utility for dependency injection.
+/// Registers the lazily created LaunchDarkly generated-client provider.
 /// </summary>
 public static class LaunchDarklyOpenApiClientUtilRegistrar
 {
