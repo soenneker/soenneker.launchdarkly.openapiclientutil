@@ -43,8 +43,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Soenneker.LaunchDarkly.HttpClients" Version="4.0.13" />
+        <PackageReference Include="Soenneker.LaunchDarkly.HttpClients" Version="4.0.16" />
         <PackageReference Include="Soenneker.LaunchDarkly.OpenApiClient" Version="4.0.14" />
-        <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.821" />
+        <PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.829" />
     </ItemGroup>
 </Project>
