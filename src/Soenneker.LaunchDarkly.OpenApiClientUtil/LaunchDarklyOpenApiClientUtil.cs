@@ -11,6 +11,7 @@ using Soenneker.Utils.AsyncSingleton;
 
 namespace Soenneker.LaunchDarkly.OpenApiClientUtil;
 
+/// <inheritdoc cref="ILaunchDarklyOpenApiClientUtil" />
 public sealed class LaunchDarklyOpenApiClientUtil : ILaunchDarklyOpenApiClientUtil
 {
     private readonly AsyncSingleton<LaunchDarklyOpenApiClient> _client;
