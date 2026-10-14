@@ -46,6 +46,6 @@
 
     <ItemGroup>
         <PackageReference Include="Soenneker.LaunchDarkly.HttpClients" Version="4.0.78" />
-        <PackageReference Include="Soenneker.LaunchDarkly.OpenApiClient" Version="4.0.51" />
+        <PackageReference Include="Soenneker.LaunchDarkly.OpenApiClient" Version="4.0.52" />
     </ItemGroup>
 </Project>
